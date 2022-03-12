@@ -12,7 +12,9 @@
    - Interfacce, classi e polimorfismo "classico" (tipo 1)
    - Interfacce funzionali e polimorfismo funzionale (tipo 2)
    - Interfacce per modellazione strutture dati (tipo 3)
-   - Funzioni map, filter. Funzioni pure vs side effect, immutabilità
+1. Funzioni
+   - map, filter
+   - Funzioni pure, side effect, immutabilità
    - Lodash
 1. React.js
    - Thinking in react
