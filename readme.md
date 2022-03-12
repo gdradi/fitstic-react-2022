@@ -1,5 +1,5 @@
 ![React](https://blog.wildix.com/wp-content/uploads/2020/06/react-logo.jpg)
-# FITSTIC 2021 - Corso React.js
+# FITSTIC 2022 - Corso React.js
 ## Argomenti
 1. Evoluzione del web
    - Documenti
