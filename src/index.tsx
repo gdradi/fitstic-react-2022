@@ -1,4 +1,5 @@
 import './index.scss';
+import _ from "lodash";
 
 // let a: number = 1;
 // let b: string = "ciao";
@@ -24,7 +25,8 @@ class Triangolo implements Shape {
     }
 
 }
-// const obj: Shape = new Quadrato();
+const obj: Shape = new Quadrato();
+const test: number = 1;
 
 
 // Logica della mia applicazione
@@ -112,10 +114,13 @@ const sommaInutilmenteArticolata: FunzioneSomma = (x, y) => {
 
 //------------------------
 
-const myF = function () { console.log("sono dentro al setTimeout!"); };
+// const myF = function () { console.log("sono dentro al setTimeout!"); };
 
 console.log("step 1");
-const result = setTimeout(myF, 1000);
+setTimeout(function (result: number) {
+    // ....
+    console.log("sono dentro al setTimeout!");
+}, 1000);
 console.log("step 2");
 console.log("step 3");
 
@@ -133,16 +138,66 @@ const myApp = (n1: number, n2: number, f: FunzioneSomma): void => {
 
 
 interface Punto {
-    x: number;
-    y: number;
-    z: number;
+    readonly x: number;
+    readonly y: number;
+    readonly z: number;
 };
+
+
+
 const p: Punto = { x: 5, y: 10, z: 0 };
 const p2: Punto = { x: 7, y: 5, z: 0 };
 
 const sommaPunti = (p1: Punto, p2: Punto) => {
-
+    //const p3: Punto = { x: p1.x + p2.x };
 };
+
+
+const arrayInput: number[] = [10,11,12,13];
+
+// const arrayOutputMap = arrayInput.map((value, index) => { 
+//     console.log("Stampa map: ", value, index);
+//     return value * 2; 
+// });
+// Stessa cosa, ma piu contratta
+// const arrayOutput = arrayInput.map((value, index) => value * 2 );
+
+const arrayOutputLodash = _.map(arrayInput, (value, index) => value * 2 );
+console.log("arrayOutputLodash", arrayOutputLodash);
+
+
+
+
+// const arrayOutput: number[] = [];
+// arrayInput.forEach((value, index) => {
+//     console.log("Stampa forEach: ", value, index);
+//     const newValue = value * 2;
+//     //arrayOutput = arrayOutput.concat(newValue);
+//     arrayOutput.push(newValue);
+// });
+// console.log("forEach", arrayOutput);
+
+// let arrayOutput: number[] = [];
+// for (let index = 0; index < arrayInput.length; index++) {
+//     const value = arrayInput[index];
+//     const newValue = value * 2;
+//     arrayOutput.push(newValue);
+// }
+// console.log(arrayOutput);
+
+// const arrayOutputFilter = arrayInput.filter((value, index) => {
+//     return (value % 2) === 0;
+// });
+// console.log("arrayOutputFilter", arrayOutputFilter);
+
+const arrayOutputFilterLodash = _.filter(arrayInput, (value, index) => {
+    return (value % 2) === 0;
+});
+console.log("arrayOutputFilterLodash", arrayOutputFilterLodash);
+
+
+
+
 
 
 // import ReactDOM from 'react-dom';
