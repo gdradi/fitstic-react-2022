@@ -5,9 +5,8 @@ import _ from "lodash";
 
 import ReactDOM from 'react-dom';
 import { TestComponent, TestComponentSenzaTag } from './components';
-import { App } from './lezione2Es1Posts';
-
-
+import { useState } from 'react';
+// import { App } from './lezione2Es1Posts';
 
 
 // const App: React.FunctionComponent = () => {
@@ -28,8 +27,35 @@ import { App } from './lezione2Es1Posts';
 //         {/* <TestComponentSenzaTag /> */}
 //     </div>;
 // };
+interface DateProps {
+    readonly date: Date;
+};
+const DateComponent: React.FunctionComponent<DateProps> = (props) => {
+    const currentDate = props.date.toString();
+    return <div>
+        Data e ora attuali: {currentDate}
+    </div>;
+};
+const App: React.FunctionComponent = () => {
+    /**
+     * Questo componente HA uno stato, "date", di tipo Date
+     * Per modificare questo stato, devo usare la funzione setDate
+     */
+    const [date, setDate] = useState<Date>(new Date());
 
-ReactDOM.render(
-    <App />,
-    document.getElementById('root')
-);
+    // let date = new Date();
+    return <div>
+        <DateComponent date={date} />
+        <button onClick={() => {
+            console.log("onClick del bottone!");
+            setDate(new Date());
+        }}>Bottone</button>
+    </div>;
+};
+
+ReactDOM.render(<App />, document.getElementById('root'));
+
+
+// setInterval(() => {
+//     console.log(new Date().toString());
+// }, 1000);

@@ -11,6 +11,8 @@
  * - 2. create un repo gitHub privato e invitate l'utente "gdradi"
  */
 
+import _ from "lodash";
+
 
 // Step 1. Interfaccia che modella il concetto di Post
 // cos'è un post?
@@ -20,42 +22,11 @@ interface Post {
     readonly testo: string;
 }
 
-// Step 2: definire una lista di post
-const posts: Post[] = [
-    {
-        titolo: "Post 1",
-        autore: "Autore 1",
-        testo: "Testo 1",
-    },
-    {
-        titolo: "Post 2",
-        autore: "Autore 2",
-        testo: "Testo 2",
-    },
-    {
-        titolo: "Post 3",
-        autore: "Autore 3",
-        testo: "Testo 3",
-    },
-    {
-        titolo: "Post 4",
-        autore: "Autore 4",
-        testo: "Testo 4",
-    },
-    {
-        titolo: "Post 5",
-        autore: "Autore 5",
-        testo: "Testo 5",
-    },
-];
-
-
 // Step 3: componente che riceve in input un Post e lo renderizza
 
 interface PostComponentProps {
     readonly post: Post;
 }
-
 export const PostComponent: React.FunctionComponent<PostComponentProps> = (props) => {
     // const { titolo, autore, testo } = props.post;
     return (
@@ -69,12 +40,49 @@ export const PostComponent: React.FunctionComponent<PostComponentProps> = (props
 
 
 
+interface PostStatsProps {
+    readonly listaDiPost: Post[];
+};
+export const PostStatsComponent: React.FunctionComponent<PostStatsProps> = (props) => {
+    const { listaDiPost } = props;
+    return <div className="postStats">
+        <div>Numero di post presenti: {listaDiPost.length}</div>
+    </div>;
+};
+
+
 export const App: React.FunctionComponent = () => {
+
+    // Step 2: definire una lista di post
+    const posts: Post[] = [
+        {
+            titolo: "Post 1",
+            autore: "Autore 1",
+            testo: "Testo 1",
+        },
+        {
+            titolo: "Post 2",
+            autore: "Autore 2",
+            testo: "Testo 2",
+        },
+        {
+            titolo: "Post 3",
+            autore: "Autore 3",
+            testo: "Testo 3",
+        },
+        {
+            titolo: "Post 4",
+            autore: "Autore 4",
+            testo: "Testo 4",
+        }
+    ];
+
     return (
         <div className="app">
+            <PostStatsComponent listaDiPost={posts} />
             <div className="wrapper">
-                {posts.map((post) => {
-                    return <PostComponent post={post} />;
+                {_.map(posts, (post, index) => {
+                    return <PostComponent key={index} post={post} />;
                 })}
             </div>
         </div>
