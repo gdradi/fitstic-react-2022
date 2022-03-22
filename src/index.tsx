@@ -48,32 +48,80 @@ const App: React.FunctionComponent = () => {
      * Per modificare questo stato, devo usare la funzione setDate
      * Il suo valore iniziale è new Date()
      */
+    const initialValue = 0;
+    const initialValue2 = 200;
     const [date, setDate] = useState(new Date());
+    const [tempValue, setTempValue] = useState(initialValue);
+    const [tempValue2, setTempValue2] = useState(initialValue2);
 
     // let date = new Date();
     return <div>
-        <DateComponent date={date} />
-        <button onClick={() => {
-            console.log("onClick del bottone!");
-            setDate(new Date());
-        }}>Bottone</button>
+
+        <div className="box">
+            <DateComponent date={date} />
+            <button onClick={() => {
+                console.log("onClick del bottone!");
+                setDate(new Date());
+            }}>Refresh date</button>
+        </div>
+
+        <CounterComponent
+            name={"Contatore 1"}
+            initialValue={initialValue}
+            callback={(value) => {
+                console.log(value);
+                setTempValue(value);
+            }}
+        />
+        <CounterComponent
+            name={"Contatore 2"}
+            initialValue={initialValue2}
+            callback={(value) => {
+                console.log(value);
+                setTempValue2(value);
+            }}
+        />
+
+        <div>Il valore del contatore 1 è {tempValue}</div>
+        <div>Il valore del contatore 2 è {tempValue2}</div>
+
+
+        <button className="btn">btn</button>
     </div>;
 };
 
-export const CounterComponent: React.FunctionComponent = () => {
+// interface CallbackFunction {
+//     (value: number): void
+// }
+interface CounterProps {
+    readonly initialValue: number;
+    readonly name: string;
+    readonly callback: (value: number) => void;
+    // readonly callback: CallbackFunction;
+
+}
+export const CounterComponent: React.FunctionComponent<CounterProps> = (props) => {
+    const { initialValue, name, callback } = props;
+
+    const clickHandler = (newValue: number) => {
+        setValue(newValue);
+        callback(newValue);
+    };
+
     // Stato
-    const [value, setValue] = useState(0);
-    return <div>
+    const [value, setValue] = useState(initialValue);
+    return <div className="box">
+        <h4>{name}</h4>
         Value: {value}
-        <button onClick={() => { setValue(value + 1); }}>Inc</button>
-        <button onClick={() => { setValue(value - 1); }}>Dec</button>
-        <button onClick={() => { setValue(0); }}>Reset</button>
+        <button onClick={() => { clickHandler(value + 1); }}>Inc</button>
+        <button onClick={() => { clickHandler(value - 1); }}>Dec</button>
+        <button onClick={() => { clickHandler(initialValue); }}>Reset</button>
     </div>;
 };
 
 
 
-ReactDOM.render(<CounterComponent />, document.getElementById('root'));
+ReactDOM.render(<App />, document.getElementById('root'));
 
 
 // setInterval(() => {
