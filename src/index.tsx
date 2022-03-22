@@ -30,18 +30,25 @@ import { useState } from 'react';
 interface DateProps {
     readonly date: Date;
 };
+
+
 const DateComponent: React.FunctionComponent<DateProps> = (props) => {
+    console.log("[DateComponent] execution()");
     const currentDate = props.date.toString();
     return <div>
         Data e ora attuali: {currentDate}
     </div>;
 };
+
+
+
 const App: React.FunctionComponent = () => {
     /**
      * Questo componente HA uno stato, "date", di tipo Date
      * Per modificare questo stato, devo usare la funzione setDate
+     * Il suo valore iniziale è new Date()
      */
-    const [date, setDate] = useState<Date>(new Date());
+    const [date, setDate] = useState(new Date());
 
     // let date = new Date();
     return <div>
@@ -53,7 +60,20 @@ const App: React.FunctionComponent = () => {
     </div>;
 };
 
-ReactDOM.render(<App />, document.getElementById('root'));
+export const CounterComponent: React.FunctionComponent = () => {
+    // Stato
+    const [value, setValue] = useState(0);
+    return <div>
+        Value: {value}
+        <button onClick={() => { setValue(value + 1); }}>Inc</button>
+        <button onClick={() => { setValue(value - 1); }}>Dec</button>
+        <button onClick={() => { setValue(0); }}>Reset</button>
+    </div>;
+};
+
+
+
+ReactDOM.render(<CounterComponent />, document.getElementById('root'));
 
 
 // setInterval(() => {
