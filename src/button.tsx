@@ -9,11 +9,11 @@
 
 
 interface ButtonProps {
-    readonly text: string;
+    // readonly text: string;
     readonly clickCallback: () => void;
     readonly disabled?: boolean;
 }
 export const ButtonComponent: React.FunctionComponent<ButtonProps> = (props) => {
-    const { text, disabled, clickCallback } = props;
-    return <button className="btn" disabled={disabled} onClick={() => clickCallback()}>{text}</button>;
+    const { disabled, clickCallback, children } = props;
+    return <button className="btn" disabled={disabled} onClick={() => clickCallback()}>{children}</button>;
 };
