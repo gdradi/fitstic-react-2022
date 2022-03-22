@@ -6,4 +6,14 @@
  * - alla pressione del primo bottone, viusalizzare un log in console
  * - alla pressione del secondo bottone, visualizzare un alert    alert("test.o..");
  */
-export {};
+
+
+interface ButtonProps {
+    readonly text: string;
+    readonly clickCallback: () => void;
+    readonly disabled?: boolean;
+}
+export const ButtonComponent: React.FunctionComponent<ButtonProps> = (props) => {
+    const { text, disabled, clickCallback } = props;
+    return <button className="btn" disabled={disabled} onClick={() => clickCallback()}>{text}</button>;
+};

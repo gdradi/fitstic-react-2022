@@ -43,7 +43,7 @@ body {
     background: $background;
     color: white;
     padding: 6px;
-    margin: 4px;
+    margin: 2px;
     border-radius: 4px;
     border: 1px solid #efefef;
     cursor: pointer;
@@ -52,5 +52,9 @@ body {
     }
     &:active {
         background: darken($background, 10%);
+    }
+    &:disabled {
+        background: #CCC;
+        cursor: not-allowed;
     }
 }

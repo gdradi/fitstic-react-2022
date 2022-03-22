@@ -6,6 +6,7 @@ import _ from "lodash";
 import ReactDOM from 'react-dom';
 import { TestComponent, TestComponentSenzaTag } from './components';
 import { useState } from 'react';
+import { ButtonComponent } from './button';
 // import { App } from './lezione2Es1Posts';
 
 
@@ -86,7 +87,11 @@ const App: React.FunctionComponent = () => {
         <div>Il valore del contatore 2 è {tempValue2}</div>
 
 
-        <button className="btn">btn</button>
+        <ButtonComponent clickCallback={() => { console.log("bottone1"); }} text={"Log"} />
+        <ButtonComponent clickCallback={() => { alert("bottone2"); }} text={"Alert"} />
+        <ButtonComponent clickCallback={() => { console.log("bottone3"); }} text={"Disabled"} disabled={true} />
+
+
     </div>;
 };
 
