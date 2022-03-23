@@ -2,7 +2,8 @@ import './index.scss';
 
 import ReactDOM from 'react-dom';
 
-import { App } from './app';
+import _ from 'lodash';
+import { App } from './lezione2Es1Posts';
 
 
 ReactDOM.render(<App />, document.getElementById('root'));

@@ -12,11 +12,13 @@
  */
 
 import _ from "lodash";
+import { ButtonComponent } from "./button";
+import { PostForm } from "./postForm";
 
 
 // Step 1. Interfaccia che modella il concetto di Post
 // cos'è un post?
-interface Post {
+export interface Post {
     readonly titolo: string;
     readonly autore: string;
     readonly testo: string;
@@ -79,6 +81,12 @@ export const App: React.FunctionComponent = () => {
 
     return (
         <div className="app">
+
+            <PostForm
+                onPostCreated={(post) => { console.log(post); }}
+            />
+
+
             <PostStatsComponent listaDiPost={posts} />
             <div className="wrapper">
                 {_.map(posts, (post, index) => {

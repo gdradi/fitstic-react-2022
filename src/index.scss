@@ -1,6 +1,11 @@
 body {
     background: #efefef;
-    font-family:'Montserrat', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+input, textarea {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 4px;
 }
 
 .title {
@@ -56,5 +61,34 @@ body {
     &:disabled {
         background: #CCC;
         cursor: not-allowed;
+    }
+}
+
+.form {
+    h3 {
+        margin: 24px;
+    }
+    .inputs {
+        display: flex;
+        margin: 8px;
+        &>:first-child {
+            text-align: right;
+            width: 10%;
+            margin-right: 8px;
+        }
+        input {
+            width: 100%;
+        }
+        textarea {
+            height: 100px;
+            width: 100%;
+        }
+    }
+    .button {
+        text-align: right;
+        .btn {
+            padding: 8px 16px;
+            text-transform: uppercase;
+        }
     }
 }

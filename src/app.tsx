@@ -1,4 +1,5 @@
 
+import _ from 'lodash';
 import { useState } from 'react';
 import { ButtonComponent } from './button';
 import { CounterComponent } from './counter';
@@ -6,34 +7,49 @@ import { DateComponent } from './date';
 
 
 export const App: React.FunctionComponent = () => {
-    /**
-     * Questo componente HA uno stato, "date", di tipo Date
-     * Per modificare questo stato, devo usare la funzione setDate
-     * Il suo valore iniziale è new Date()
-     */
+
+    // Stati
     const initialValue = 0;
     const initialValue2 = 200;
     const [date, setDate] = useState(new Date());
     const [tempValue, setTempValue] = useState(initialValue);
     const [tempValue2, setTempValue2] = useState(initialValue2);
-    const [text, setText] = useState("");
+    const [text, setText] = useState(null);
+    const [numero, setNumero] = useState(0);
 
-    // let date = new Date();
+    // Variabili/funzioni di appoggio
+    const array = _.range(numero);
+
+    // Rendering
     return <div>
 
         <div className="box">
-            <input type="text" placeholder="Scrivi qui.." onChange={(event) => {
+            <input type="text" placeholder="Scrivi qui.." value={text} onChange={(event) => {
                 const value = event.target.value;
                 console.log(value);
                 setText(value);
             }} />
+            <ButtonComponent clickCallback={() => { setText(""); }}>cancella</ButtonComponent>
             <div>{text}</div>
-            {text.length >= 5 && <div>Il testo inserito è piu lungo di 5 caratteri</div>}
+            {_.size(text) >= 5 && <div>Il testo inserito è piu lungo di 5 caratteri</div>}
             {text === "contatore" && <CounterComponent
                 name={"Contatore condizionale"}
                 initialValue={70}
                 callback={(value) => { console.log(value); }}
             />}
+        </div>
+
+        <div className="box">
+            <input type="number" onChange={(event) => {
+                const value = event.target.value;
+                const valueAsNumber = Number(value);
+                if (isNaN(valueAsNumber)) {
+                    alert("valore inserito sbagliato");
+                } else {
+                    setNumero(valueAsNumber);
+                }
+            }} />
+            {numero > 0 && _.map(array, (value) => <ButtonComponent key={value} clickCallback={() => { }}>Bottone {value + 1}</ButtonComponent> )}
         </div>
 
 
