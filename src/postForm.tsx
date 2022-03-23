@@ -23,32 +23,50 @@ interface PostFormProps {
 }
 export const PostForm: React.FunctionComponent<PostFormProps> = ({ onPostCreated }) => {
     // Stati
-    const [title, setTitle] = useState("");
-    const [author, setAuthor] = useState("");
-    const [body, setBody] = useState("");
+    // const [title, setTitle] = useState("");
+    // const [author, setAuthor] = useState("");
+    // const [body, setBody] = useState("");
+
+    const [post, setPost] = useState<Post>({
+        titolo: "",
+        autore: "",
+        testo: ""
+    });
+
 
     return <div className="form box">
         <h3>Crea nuovo post</h3>
         <div className="inputs">
             <span>Titolo</span>
-            <input type="text" placeholder="Titolo.." onChange={event => setTitle(event.target.value)} />
+            <input type="text" placeholder="Titolo.." onChange={event => {
+                //post.titolo = event.target.value;
+                setPost({
+                    ...post,
+                    titolo: event.target.value
+                });
+            }} />
         </div>
         <div className="inputs">
             <span>Autore</span>
-            <input type="text" placeholder="Autore.." onChange={event => setAuthor(event.target.value)} />
+            <input type="text" placeholder="Autore.." onChange={event => {
+                setPost({
+                    ...post,
+                    autore: event.target.value,
+                });
+            }} />
         </div>
         <div className="inputs">
             <span>Corpo</span>
-            <textarea onChange={event => setBody(event.target.value)} />
+            <textarea onChange={event => setPost({
+                ...post,
+                testo: event.target.value
+            })} />
         </div>
         <div className="button">
             <ButtonComponent clickCallback={() => {
-                const post: Post = {
-                    titolo: title,
-                    autore: author,
-                    testo: body
-                };
-                onPostCreated(post);
+                onPostCreated({
+                    ...post
+                });
             }}>Crea</ButtonComponent>
         </div>
     </div>;
