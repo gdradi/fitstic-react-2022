@@ -9,11 +9,9 @@ import { DateComponent } from './date';
 export const App: React.FunctionComponent = () => {
 
     // Stati
-    const initialValue = 0;
-    const initialValue2 = 200;
     const [date, setDate] = useState(new Date());
-    const [tempValue, setTempValue] = useState(initialValue);
-    const [tempValue2, setTempValue2] = useState(initialValue2);
+    const [valueContatore1, setTempValue] = useState(0);
+    const [valueContatore2, setTempValue2] = useState(200);
     const [text, setText] = useState("");
     const [numero, setNumero] = useState(0);
 
@@ -32,11 +30,11 @@ export const App: React.FunctionComponent = () => {
             <ButtonComponent clickCallback={() => { setText(""); }}>cancella</ButtonComponent>
             <div>{text}</div>
             {_.size(text) >= 5 && <div>Il testo inserito è piu lungo di 5 caratteri</div>}
-            {text === "contatore" && <CounterComponent
+            {/* {text === "contatore" && <CounterComponent
                 name={"Contatore condizionale"}
                 initialValue={70}
                 callback={(value) => { console.log(value); }}
-            />}
+            />} */}
         </div>
 
         <div className="box">
@@ -63,24 +61,26 @@ export const App: React.FunctionComponent = () => {
 
         <CounterComponent
             name={"Contatore 1"}
-            initialValue={initialValue}
+            //initialValue={initialValue}
+            value={valueContatore1}
             callback={(value) => {
                 console.log(value);
                 setTempValue(value);
             }}
-            resetDisabled={true}
+            resetDisabled={false}
         />
         <CounterComponent
             name={"Contatore 2"}
-            initialValue={initialValue2}
+            //initialValue={initialValue2}
+            value={valueContatore2}
             callback={(value) => {
                 console.log(value);
                 setTempValue2(value);
             }}
         />
 
-        <div>Il valore del contatore 1 è {tempValue}</div>
-        <div>Il valore del contatore 2 è {tempValue2}</div>
+        <div>Il valore del contatore 1 è {valueContatore1}</div>
+        <div>Il valore del contatore 2 è {valueContatore2}</div>
 
         <ButtonComponent clickCallback={() => { console.log("bottone1"); }} >Log</ButtonComponent>
         <ButtonComponent clickCallback={() => { alert("bottone2"); }}>Alert</ButtonComponent>
