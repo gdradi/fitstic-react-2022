@@ -14,7 +14,7 @@ export const App: React.FunctionComponent = () => {
     const [date, setDate] = useState(new Date());
     const [tempValue, setTempValue] = useState(initialValue);
     const [tempValue2, setTempValue2] = useState(initialValue2);
-    const [text, setText] = useState(null);
+    const [text, setText] = useState("");
     const [numero, setNumero] = useState(0);
 
     // Variabili/funzioni di appoggio
