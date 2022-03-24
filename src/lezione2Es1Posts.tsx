@@ -11,8 +11,11 @@
  * - 2. create un repo gitHub privato e invitate l'utente "gdradi"
  */
 
+import axios from "axios";
 import _ from "lodash";
+import { createPostApi } from "./apis/createPost";
 import { ButtonComponent } from "./button";
+import { SERVER_URL } from "./config";
 import { PostForm } from "./postForm";
 
 
@@ -83,7 +86,16 @@ export const App: React.FunctionComponent = () => {
         <div className="app">
 
             <PostForm
-                onPostCreated={(post) => { console.log(post); }}
+                onPostCreated={(post) => {
+                    console.log(post);
+                    createPostApi(post)
+                        .then(function (response) {
+                            console.log(response);
+                        })
+                        .catch(function (error) {
+                            console.log(error);
+                        });
+                }}
             />
 
 
