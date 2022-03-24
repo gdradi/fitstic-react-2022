@@ -3,9 +3,9 @@ import './index.scss';
 import ReactDOM from 'react-dom';
 
 import _ from 'lodash';
-//import { App } from './app';
+import { App } from './app';
 //import { App } from './lezione2Es1Posts';
-import { App } from './appDate';
+//import { App } from './appDate';
 
  ReactDOM.render(<App />, document.getElementById('root'));
 
