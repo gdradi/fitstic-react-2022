@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { ButtonComponent } from './button';
 import { Post } from './lezione2Es1Posts';
+import Button from '@mui/material/Button';
 
 /**
  * 
@@ -63,11 +64,18 @@ export const PostForm: React.FunctionComponent<PostFormProps> = ({ onPostCreated
             })} />
         </div>
         <div className="button">
-            <ButtonComponent clickCallback={() => {
+            <Button variant="outlined" onClick={() => {
                 onPostCreated({
                     ...post
                 });
-            }}>Crea</ButtonComponent>
+            }}>Crea</Button>
+
+
+            {/* <ButtonComponent clickCallback={() => {
+                onPostCreated({
+                    ...post
+                });
+            }}>Crea</ButtonComponent> */}
         </div>
     </div>;
 }

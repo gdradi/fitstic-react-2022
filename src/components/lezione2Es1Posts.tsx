@@ -10,13 +10,9 @@
  * - 1. inviare la cartella "src" zippata a giacomo.dradi@gmail.com
  * - 2. create un repo gitHub privato e invitate l'utente "gdradi"
  */
+import { useState } from 'react';
+import { Link, Route, Routes } from 'react-router-dom';
 
-import axios from "axios";
-import _ from "lodash";
-import { createPostApi } from "./apis/createPost";
-import { ButtonComponent } from "./button";
-import { SERVER_URL } from "./config";
-import { PostForm } from "./postForm";
 
 
 // Step 1. Interfaccia che modella il concetto di Post
@@ -56,6 +52,42 @@ export const PostStatsComponent: React.FunctionComponent<PostStatsProps> = (prop
 };
 
 
+
+
+
+
+function Home() {
+    return (
+        <>
+            <main>
+                <h2>Welcome to the homepage!</h2>
+                <p>You can do this, I believe in you.</p>
+            </main>
+            <nav>
+                <Link to="/about">About</Link>
+            </nav>
+        </>
+    );
+}
+
+function About() {
+    return (
+        <>
+            <main>
+                <h2>Who are we?</h2>
+                <p>
+                    That feels like an existential question, don't you
+                    think?
+                </p>
+            </main>
+            <nav>
+                <Link to="/">Home</Link>
+            </nav>
+        </>
+    );
+}
+
+
 export const App: React.FunctionComponent = () => {
 
     // Step 2: definire una lista di post
@@ -82,10 +114,24 @@ export const App: React.FunctionComponent = () => {
         }
     ];
 
+
+    const [age, setAge] = useState('');
+
+    const handleChange = (event) => {
+        setAge(event.target.value);
+    };
+
     return (
         <div className="app">
 
-            <PostForm
+            <h1>Welcome to React Router!</h1>
+            <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="about" element={<About />} />
+            </Routes>
+
+
+            {/* <PostForm
                 onPostCreated={(post) => {
                     console.log(post);
                     createPostApi(post)
@@ -105,6 +151,25 @@ export const App: React.FunctionComponent = () => {
                     return <PostComponent key={index} post={post} />;
                 })}
             </div>
+
+
+
+            <FormControl fullWidth>
+                <InputLabel id="demo-simple-select-label">Age</InputLabel>
+                <Select 
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    value={age}
+                    label="Age"
+                    onChange={handleChange}
+                >
+                    <MenuItem value={10}>Ten</MenuItem>
+                    <MenuItem value={20}>Twenty</MenuItem>
+                    <MenuItem value={30}>Thirty</MenuItem>
+                </Select>
+            </FormControl>
+            Valore di age nello state: {age} */}
+
         </div>
     );
 };

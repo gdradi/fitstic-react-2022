@@ -1,24 +1,37 @@
 import './index.scss';
 
+import { createTheme, ThemeProvider } from '@mui/material';
+import CssBaseline from '@mui/material/CssBaseline';
 import ReactDOM from 'react-dom';
+import { BrowserRouter } from 'react-router-dom';
 
-import _ from 'lodash';
-import "./ajax";
-//import { App } from './app';
-//import { UsersVisualizer } from './ajax';
-import { App } from './lezione2Es1Posts';
-//import { App } from './appDate';
+import { App, Var2  } from './components2/app';
 
- ReactDOM.render(<App />, document.getElementById('root'));
+import hfudahfudfhdsf from "./components2/app";
 
 
-// const intervalId = window.setInterval(() => {
-//     console.log("setInterval");
-// }, 1000);
-// console.log(intervalId);
+const theme = createTheme({
+    palette: {
+        mode: 'light',
+    },
+    components: {
+        MuiButton: {
+            styleOverrides: {
 
-// setTimeout(() => {
-//     console.log("setTimeout()");
-//     clearInterval(intervalId);
-// }, 5000);
+            },
+            defaultProps: {
 
+            }
+        }
+    }
+});
+
+ReactDOM.render(
+    <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <BrowserRouter>
+            <App />
+        </BrowserRouter>
+    </ThemeProvider>,
+    document.getElementById('root')
+);

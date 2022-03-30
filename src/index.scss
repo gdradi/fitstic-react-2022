@@ -1,3 +1,7 @@
+@import "./styles/button.scss";
+@import "./components/button.scss";
+
+
 body {
     background: #efefef;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -91,4 +95,9 @@ input, textarea {
             text-transform: uppercase;
         }
     }
+}
+
+
+.miaSelect {
+    background: red;
 }
